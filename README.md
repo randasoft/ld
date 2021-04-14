@@ -1,2 +1,0 @@
-# ld
-Learn Real Design
