@@ -1,1 +1,0 @@
-Simple javascript base HTML-5 video controllers
