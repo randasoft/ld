@@ -1,23 +1,166 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Custom Video Controls</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" type="image/x-icon" href="images/pause.png">
-</head>
-<body>
-	<div id="video_player_box">
-		<video id="my_video" poster="images/video.png">
-			
-		</video>
-		<div id="video_controls_bar">
-			<img id="playpausebtn" src="images/play.png">
-			<input id="seekslider" max="100" min="0" step="1" type="range" value="0">
-		</div>
-	</div>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style media="screen">
+      body{
+        background: url('0attern.jpg');
+      }
+      .b1{
+        background:#ffffffe0;
+       text-align: center;
+       margin: auto;
+       width: 80%;
+      }
+      .b2{
+        background:#5b9cb2;
+        margin: auto;
+        width: 50%;
+        cursor: pointer;
 
-	<script src="video.js"></script>
-</body>
+      }
+      .br{
+        border-radius: 15px;
+      }
+      .fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background:white;
+    padding:10px;
+    border: 3px solid #73AD21;
+    display:block;
+}
+    </style>
+  </head>
+  <body><div class="fixed" id="log" onclick="showlog()">Login</div>
+    <div class="b1 br">
+<h1><span style="color:green;">LEARN REAL DESIGN</span></h1>
+
+:Modules:<br><br>
+<div class="br b2" onclick="gomega('intro')">
+  Introduction
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  How to buy this course
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  How to install
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  Canvas and Tools intro
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  Rectangles and Square tool
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  Circle tool
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  Polygon and Star tool
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  <small>The Boss of Drawing Tool</small><br>Pen Tool<br>Part-1
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+  <small>The Boss of Drawing Tool</small><br>Pen Tool<br>Part-2
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+Text tool
+</div>
+<br>
+<div class="br b2" onclick="gomega('q')">
+Trace image using pen tool<br>Part-1.1
+</div>
+
+<br>
+
+<div class="br b2" onclick="gomega('q')">
+Trace image using pen tool<br>Part-1.2
+</div>
+
+<br>
+
+<div class="br b2" onclick="gomega('q')">
+Trace image using pen tool<br>Part-2
+</div>
+
+<br>
+<div class="br b2" onclick="gomega('q')">
+Trace image using pen tool<br>Part-3
+</div>
+
+<br>
+<div class="br b2" onclick="gomega('q')">
+Shape cutting
+</div>
+
+<br>
+
+<div class="br b2" onclick="gomega('q')">
+Conclution
+</div>
+
+<br>
+
+
+
+</div>
+
+<script type="text/javascript">
+
+var a=document.cookie["User"];
+
+
+if(a!=undefined){
+document.getElementById("log").style.display = "none";
+}
+
+function showlog(){
+  document.getElementById("log").innerHTML="Phone:<input type='text' id='phone'>  <br>Password:<input type='password' id='pass'><br><input type='submit' onclick='mklog()' value='Login'>";
+}
+function mklog(){
+  var phone=document.getElementById("phone");
+  var pass=document.getElementById("pass");
+  var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      op = xhttp.responseText;
+      if(op=="ok"){document.cookie["User"]=phone;}
+           else{ alert("Sorry, invalid info");}
+    }
+  };
+  xhttp.open("GET", "http://localhost/cou?phn="+phone+"&p="+pass+"", true);
+  xhttp.send();
+}
+
+  function gomega(b){
+var op;
+    var a=document.cookie["User"];
+var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+  if (xhttp.readyState == 4 && xhttp.status == 200) {
+    op = xhttp.responseText;
+    if(op=="no"){alert("Please buy this course or make login");}
+         else{ window.location.href="op";}
+  }
+};
+xhttp.open("GET", "http://localhost/cou?user="+a+"&q="+b+"", true);
+xhttp.send();
+
+  }
+</script>
+  </body>
+
 </html>
