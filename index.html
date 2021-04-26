@@ -33,83 +33,124 @@
     border: 3px solid #73AD21;
     display:block;
 }
+.crt{
+  text-align: center;
+}
     </style>
   </head>
-  <body><div class="fixed" id="log" onclick="showlog()">Login</div>
+  <body><div class="fixed crt" id="log" onclick="showlog()">Login
+<div style="display: none;" id="llog">
+  
+  Phone:<input type='text' id='phone'>  <br>Password:<input type='password' id='pass'><br><input type='submit' onclick='mklog()' value='Login'>
+</div>
+  </div>
     <div class="b1 br">
 <h1><span style="color:green;">LEARN REAL DESIGN</span></h1>
 
 :Modules:<br><br>
 <div class="br b2" onclick="gomega('intro')">
   Introduction
+  <div id="intro"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('htb')">
   How to buy this course
+  <div id="htb"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('hti')">
   How to install
+  <div id="hti"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('canvas')">
   Canvas and Tools intro
+  <div id="canvas"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('rec')">
   Rectangles and Square tool
+  <div id="rec"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('fll')">
+  Fill and Stroke
+  <div id="fll"></div>
+</div>
+<br>
+<div class="br b2" onclick="gomega('cir')">
   Circle tool
+  <div id="cir"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('poly')">
   Polygon and Star tool
+  <div id="poly"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('p1')">
   <small>The Boss of Drawing Tool</small><br>Pen Tool<br>Part-1
+  <div id="p1"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('p2')">
   <small>The Boss of Drawing Tool</small><br>Pen Tool<br>Part-2
+  <div id="p2"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('text')">
 Text tool
+<div id="text"></div>
 </div>
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('t1.1')">
 Trace image using pen tool<br>Part-1.1
+<div id="t1.1"></div>
 </div>
 
 <br>
 
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('t1.2')">
 Trace image using pen tool<br>Part-1.2
+<div id="t1.2"></div>
 </div>
 
 <br>
 
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('t2')">
 Trace image using pen tool<br>Part-2
+<div id="t2"></div>
 </div>
 
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('t3')">
 Trace image using pen tool<br>Part-3
+<div id="t3"></div>
 </div>
 
 <br>
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('cut')">
 Shape cutting
+<div id="cut"></div>
+</div>
+
+<br>
+<div class="br b2" onclick="gomega('save')">
+Save
+<div id="save"></div>
+</div>
+
+<br>
+<div class="br b2" onclick="gomega('ex')">
+Export
+<div id="ex"></div>
 </div>
 
 <br>
 
-<div class="br b2" onclick="gomega('q')">
+<div class="br b2" onclick="gomega('fin')">
 Conclution
+<div id="fin"></div>
 </div>
 
 <br>
@@ -119,44 +160,60 @@ Conclution
 </div>
 
 <script type="text/javascript">
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
 
-var a=document.cookie["User"];
 
 
-if(a!=undefined){
-document.getElementById("log").style.display = "none";
+
+if(getCookie("p")!=""){
+document.getElementById("log").style.display = "none";console.log(getCookie("user"));
 }
 
 function showlog(){
-  document.getElementById("log").innerHTML="Phone:<input type='text' id='phone'>  <br>Password:<input type='password' id='pass'><br><input type='submit' onclick='mklog()' value='Login'>";
+  document.getElementById("llog").style.display = "block";
 }
 function mklog(){
-  var phone=document.getElementById("phone");
-  var pass=document.getElementById("pass");
+  var phone=document.getElementById("phone").value;
+  var pass=document.getElementById("pass").value;
   var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       op = xhttp.responseText;
-      if(op=="ok"){document.cookie["User"]=phone;}
-           else{ alert("Sorry, invalid info");}
+      if(op=="ok"){document.cookie="user"+"="+phone+"";
+      document.cookie="p"+"="+pass+"";
+      window.location.href="index.html"; }
+           else{ console.log(op);alert("Sorry, invalid info");}
     }
   };
-  xhttp.open("GET", "http://localhost/cou?phn="+phone+"&p="+pass+"", true);
+  xhttp.open("GET", "http://ahanaf.spiderweaves.in/cou?phn="+phone+"&p="+pass+"", true);
   xhttp.send();
 }
 
   function gomega(b){
 var op;
-    var a=document.cookie["User"];
+    var u=getCookie("user");
+    var up=getCookie("p");
+
 var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
   if (xhttp.readyState == 4 && xhttp.status == 200) {
     op = xhttp.responseText;
     if(op=="no"){alert("Please buy this course or make login");}
-         else{ window.location.href="op";}
+         else{ 
+          document.getElementById(b).innerHTML=op;
+         }
   }
 };
-xhttp.open("GET", "http://localhost/cou?user="+a+"&q="+b+"", true);
+xhttp.open("GET", "http://ahanaf.spiderweaves.in/cou?user="+u+"&up="+up+"&q="+b+"", true);
 xhttp.send();
 
   }
@@ -164,3 +221,4 @@ xhttp.send();
   </body>
 
 </html>
+
